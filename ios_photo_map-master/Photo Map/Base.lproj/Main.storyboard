@@ -13,7 +13,7 @@
         <!--Photo Map-->
         <scene sceneID="Eh3-Ch-REm">
             <objects>
-                <viewController id="ghP-Ww-KKQ" customClass="PhotoMapViewController" customModule="Photo_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ghP-Ww-KKQ" customClass="PhotoMapViewController" customModule="Photo_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vrG-Wc-0bn"/>
                         <viewControllerLayoutGuide type="bottom" id="ufw-e1-uLx"/>

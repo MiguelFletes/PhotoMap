@@ -59,6 +59,8 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
 
         print(latString + " " + lngString)
         self.delegate?.locationsPickedLocation(controller: self, latitude: lat, longitude: lng)
+        NotificationCenter.default.post(name: NSNotification.Name("didChooseLocation"), object: nil)
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

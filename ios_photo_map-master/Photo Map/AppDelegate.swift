@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Choose Image notification received")
             self.chooseLocation()
         }
+        NotificationCenter.default.addObserver(forName: Notification.Name("didChooseLocation"), object: nil, queue: OperationQueue.main) { (Notification) in
+            print("Location Chosen")
+            self.goHome()
+        }
         return true
     }
     
@@ -28,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "location")
         self.window?.rootViewController = loginViewController
+    }
+    func goHome() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let photoMapViewController = storyboard.instantiateViewController(withIdentifier: "PhotoMapViewController")
+        self.window?.rootViewController = photoMapViewController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
