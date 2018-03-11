@@ -20,10 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Choose Image notification received")
             self.chooseLocation()
         }
-        NotificationCenter.default.addObserver(forName: Notification.Name("didChooseLocation"), object: nil, queue: OperationQueue.main) { (Notification) in
-            print("Location Chosen")
-            self.goHome()
-        }
         return true
     }
     

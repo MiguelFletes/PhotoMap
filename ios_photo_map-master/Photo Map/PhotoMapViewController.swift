@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,LocationsViewControllerDelegate {
+class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,LocationsViewControllerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -19,6 +19,7 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         // Do any additional setup after loading the view.
         let sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667), MKCoordinateSpanMake(0.1, 0.1))
         mapView.setRegion(sfRegion, animated: false)
+        mapView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,16 +29,15 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
     
 
     func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber) {
-        print("PIN IN HERE!!!!!!!!!")
-        self.navigationController?.popToViewController(controller, animated: true)
-        let locationCoordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        self.navigationController?.popToViewController(self, animated: true)
+        let locationCoordinate = CLLocationCoordinate2D(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
         let annotation = MKPointAnnotation()
         annotation.coordinate = locationCoordinate
-        annotation.title = "Picture!"
+        annotation.title = (latitude.description + " " + longitude.description)
         mapView.addAnnotation(annotation)
-    // MARK: - Navigation
     }
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "myAnnotationView"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
         if (annotationView == nil) {
@@ -56,6 +56,10 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
        // LocationsViewControllerDelegate
+        //detailViewController.tweet = tweet
+        if let locations = segue.destination as? LocationsViewController {
+            locations.delegate = self
+        }
     }
     
     @IBAction func onChoosePicture(_ sender: Any) {
@@ -85,7 +89,7 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         
         // Dismiss UIImagePickerController to go back to your original view controller
         dismiss(animated: true, completion: nil)
-        NotificationCenter.default.post(name: NSNotification.Name("didChooseImage"), object: nil)
+        self.performSegue(withIdentifier: "tagSegue", sender: nil)
     }
 
 }
