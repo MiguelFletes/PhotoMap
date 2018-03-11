@@ -2,16 +2,16 @@
 
 Photo Map is an app that allows the user to search for locations using the [Foursquare API](https://developer.foursquare.com/docs) and create a pin with an image annotation.
 
-Time spent: **X** hours spent in total
+Time spent: 6 hours spent in total
 
 ## User Stories
 
 The following **required** user stories are complete:
 
-- [ ] User can view a map (+2pt)
-- [ ] User can take a photo (+1pt)
-- [ ] User can tag a location (+1pt)
-- [ ] User can drop a pin with image annotation (+1pt)
+- [x] User can view a map (+2pt)
+- [x] User can take a photo (+1pt)
+- [x] User can tag a location (+1pt)
+- [x] User can drop a pin with image annotation (+1pt)
 
 The following **stretch** user stories are implemented:
 
@@ -22,14 +22,14 @@ The following **stretch** user stories are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How to put a pin on the map with the annotation
+2. How to make the annotations customizable
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<a href="https://imgur.com/2mdLfFs"><img src="https://i.imgur.com/2mdLfFs.gif" title="source: imgur.com" /></a>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -37,9 +37,11 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
+The hardest part of the lab was trying to get the annotation to work so that a pin appears on the map.
+
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [2018] [Miguel Fletes]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
