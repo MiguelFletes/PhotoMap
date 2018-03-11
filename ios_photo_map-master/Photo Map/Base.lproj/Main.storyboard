@@ -51,7 +51,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Photo Map" id="aPF-0T-Ydb"/>
                     <connections>
-                        <outlet property="map" destination="ire-iM-ZXR" id="VxU-D2-axM"/>
+                        <outlet property="mapView" destination="ire-iM-ZXR" id="Icn-xc-n2A"/>
                         <segue destination="eZf-Nb-6PU" kind="push" identifier="tagSegue" id="Tzv-N2-17x"/>
                         <segue destination="WeT-38-qba" kind="push" identifier="fullImageSegue" id="B5X-dM-HfZ"/>
                     </connections>

@@ -11,14 +11,14 @@ import MapKit
 
 class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,LocationsViewControllerDelegate {
 
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         let sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667), MKCoordinateSpanMake(0.1, 0.1))
-        map.setRegion(sfRegion, animated: false)
+        mapView.setRegion(sfRegion, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,8 +28,28 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
     
 
     func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber) {
+        print("PIN IN HERE!!!!!!!!!")
         self.navigationController?.popToViewController(controller, animated: true)
+        let locationCoordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationCoordinate
+        annotation.title = "Picture!"
+        mapView.addAnnotation(annotation)
     // MARK: - Navigation
+    }
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseID = "myAnnotationView"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
+        if (annotationView == nil) {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            annotationView!.canShowCallout = true
+            annotationView!.leftCalloutAccessoryView = UIImageView(frame: CGRect(x:0, y:0, width: 50, height:50))
+        }
+        
+        let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
+        imageView.image = UIImage(named: "camera")
+        
+        return annotationView
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,4 +87,5 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         dismiss(animated: true, completion: nil)
         NotificationCenter.default.post(name: NSNotification.Name("didChooseImage"), object: nil)
     }
+
 }
